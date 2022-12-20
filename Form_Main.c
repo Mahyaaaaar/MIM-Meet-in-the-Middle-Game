@@ -57,22 +57,17 @@ int main()
 	must_init(al_install_keyboard(), "Key Board");
 	must_init(al_install_mouse(), "Mouse");
 
-	ALLEGRO_TIMER* timer = al_create_timer(1.0 / 60.0);
+	ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
 	must_init(timer, "timer");
 
 	ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
 	must_init(queue, "queue");
-
-	ALLEGRO_VERTEX_DECL* vertex;
 
 	al_set_new_display_option(ALLEGRO_SAMPLE_BUFFERS, 1, ALLEGRO_SUGGEST);
 	al_set_new_display_option(ALLEGRO_SAMPLES, 8, ALLEGRO_SUGGEST);
 	al_set_new_bitmap_flags(ALLEGRO_MIN_LINEAR | ALLEGRO_MAG_LINEAR);
 	ALLEGRO_DISPLAY* disp = al_create_display(1300, 810);
 	must_init(disp, "Window");
-
-	ALLEGRO_FONT* font = al_create_builtin_font();
-	must_init(font, "Font Package");
 
 	al_register_event_source(queue, al_get_keyboard_event_source());
 	al_register_event_source(queue, al_get_display_event_source(disp));
@@ -238,8 +233,6 @@ int main()
 			default:
 				break;
 			}
-
-
 			//Build Window-----------------------------
 			al_flip_display();
 			//-----------------------------------------
@@ -248,13 +241,50 @@ int main()
 		}
 	}
 #pragma region Destroying
-	al_destroy_bitmap(Board_PIC);
-	al_destroy_font(font);
 	al_destroy_display(disp);
 	al_destroy_timer(timer);
 	al_destroy_event_queue(queue);
-#pragma endregion
+	al_destroy_bitmap(Board_PIC);
 
+	al_destroy_bitmap(CaractersP1_PIC);
+	al_destroy_bitmap(CaractersP2_PIC);
+
+	al_destroy_bitmap(NutsP1_PIC[NUT1]);
+	al_destroy_bitmap(NutsP1_PIC[NUT2]);
+	al_destroy_bitmap(NutsP2_PIC[NUT1]);
+	al_destroy_bitmap(NutsP2_PIC[NUT2]);
+
+	al_destroy_bitmap(Dice_PIC[DiceM1]);
+	al_destroy_bitmap(Dice_PIC[DiceM2]);
+	al_destroy_bitmap(Dice_PIC[DiceM3]);
+	al_destroy_bitmap(Dice_PIC[DiceP1]);
+	al_destroy_bitmap(Dice_PIC[DiceP2]);
+	al_destroy_bitmap(Dice_PIC[DiceP3]);
+
+	al_destroy_bitmap(Place_Start_Nuts_P1[Place1]);
+	al_destroy_bitmap(Place_Start_Nuts_P1[Place2]);
+	al_destroy_bitmap(Place_Start_Nuts_P2[Place1]);
+	al_destroy_bitmap(Place_Start_Nuts_P2[Place2]);
+
+	al_destroy_bitmap(lucky_CardP1_PIC[Place1]);
+	al_destroy_bitmap(lucky_CardP1_PIC[Place2]);
+	al_destroy_bitmap(lucky_CardP1_PIC[Place3]);
+	al_destroy_bitmap(lucky_CardP1_PIC[Place4]);
+	al_destroy_bitmap(lucky_CardP2_PIC[Place1]);
+	al_destroy_bitmap(lucky_CardP2_PIC[Place2]);
+	al_destroy_bitmap(lucky_CardP2_PIC[Place3]);
+	al_destroy_bitmap(lucky_CardP2_PIC[Place4]);
+
+	al_destroy_bitmap(GuideIcon);
+	al_destroy_bitmap(RefreshIcon);
+	al_destroy_bitmap(Menu_InTheBoard_Icon);
+	al_destroy_bitmap(MenuFramePic);
+
+	al_destroy_bitmap(Board_PIC);
+
+	
+	
+#pragma endregion
 
 
 
